@@ -1,4 +1,4 @@
-import datetime
+from django.utils.timezone import now
 from django import forms
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
@@ -44,7 +44,7 @@ class ComposeForm(forms.Form):
             )
             if parent_msg is not None:
                 msg.parent_msg = parent_msg
-                parent_msg.replied_at = datetime.datetime.now()
+                parent_msg.replied_at = now()
                 parent_msg.save()
             msg.save()
             message_list.append(msg)
